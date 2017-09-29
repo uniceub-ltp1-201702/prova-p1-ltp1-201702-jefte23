@@ -1,47 +1,42 @@
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Ligacao {
 
-	private String codigo;
+	private int codigo;
 	private String TelefoneDestino;
-	private LocalDate DataInicio;
-	private LocalDateTime HoraInicio;
-	private LocalDate DataFim;
-	private LocalDateTime HoraFim;
+	private LocalDateTime DataHoraInicio;
+	private LocalDateTime DataHoraFim;
 	private String cidadeDestino;
 	private String UFDestino;
 	private Cliente cliente;
 
-	// Metodo ToString+
+	// Metodo ToString
 	@Override
 	public String toString() {
-		return "Ligacao [codigo=" + codigo + ", TelefoneDestino=" + TelefoneDestino + ", DataInicio=" + DataInicio
-				+ ", HoraInicio=" + HoraInicio + ", DataFim=" + DataFim + ", HoraFim=" + HoraFim + ", cidadeDestino="
-				+ cidadeDestino + ", UFDestino=" + UFDestino + ", cliente=" + cliente + "]";
+		return "Ligacao [codigo=" + codigo + ", TelefoneDestino=" + TelefoneDestino + ", DataHoraInicio="
+				+ DataHoraInicio + ", DataHoraFim=" + DataHoraFim + ", cidadeDestino=" + cidadeDestino + ", UFDestino="
+				+ UFDestino + ", cliente=" + cliente + "]";
 	}
 
 	// Metodo Construtor
-	public Ligacao(String codigo, String telefoneDestino, LocalDate dataInicio, LocalDateTime horaInicio,
-			LocalDate dataFim, LocalDateTime horaFim, String cidadeDestino, String uFDestino, Cliente cliente) {
+	public Ligacao(int codigo, String telefoneDestino, LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim,
+			String cidadeDestino, String uFDestino, Cliente cliente) {
 		super();
 		this.codigo = codigo;
 		TelefoneDestino = telefoneDestino;
-		DataInicio = dataInicio;
-		HoraInicio = horaInicio;
-		DataFim = dataFim;
-		HoraFim = horaFim;
+		DataHoraInicio = dataHoraInicio;
+		DataHoraFim = dataHoraFim;
 		this.cidadeDestino = cidadeDestino;
 		UFDestino = uFDestino;
 		this.cliente = cliente;
 	}
 
-	// Metodo Get's e Set's
-	public String getCodigo() {
+	// Metodos Get's e Set's
+	public int getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(String codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 
@@ -53,36 +48,20 @@ public class Ligacao {
 		TelefoneDestino = telefoneDestino;
 	}
 
-	public LocalDate getDataInicio() {
-		return DataInicio;
+	public LocalDateTime getDataHoraInicio() {
+		return DataHoraInicio;
 	}
 
-	public void setDataInicio(LocalDate dataInicio) {
-		DataInicio = dataInicio;
+	public void setDataHoraInicio(LocalDateTime dataHoraInicio) {
+		DataHoraInicio = dataHoraInicio;
 	}
 
-	public LocalDateTime getHoraInicio() {
-		return HoraInicio;
+	public LocalDateTime getDataHoraFim() {
+		return DataHoraFim;
 	}
 
-	public void setHoraInicio(LocalDateTime horaInicio) {
-		HoraInicio = horaInicio;
-	}
-
-	public LocalDate getDataFim() {
-		return DataFim;
-	}
-
-	public void setDataFim(LocalDate dataFim) {
-		DataFim = dataFim;
-	}
-
-	public LocalDateTime getHoraFim() {
-		return HoraFim;
-	}
-
-	public void setHoraFim(LocalDateTime horaFim) {
-		HoraFim = horaFim;
+	public void setDataHoraFim(LocalDateTime dataHoraFim) {
+		DataHoraFim = dataHoraFim;
 	}
 
 	public String getCidadeDestino() {
@@ -108,4 +87,5 @@ public class Ligacao {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
 }
