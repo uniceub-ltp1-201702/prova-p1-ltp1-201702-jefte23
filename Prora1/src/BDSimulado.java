@@ -96,6 +96,7 @@ public class BDSimulado {
 		this.ligacoes.add(l19);
 		this.ligacoes.add(l20);
 	}
+	// --------------------------------------------------------------
 
 	// Questão 2a : função que retorne todas as informações de um Cliente
 	// fornecido o seu nome
@@ -109,8 +110,9 @@ public class BDSimulado {
 		}
 		return resultado;
 	}
+	// --------------------------------------------------------------
 
-	// Questão 2c: lista de todas as Ligações realizadas por um Cliente
+	// Questão 2b: lista de todas as Ligações realizadas por um Cliente
 	// determinado
 	public ArrayList<Ligacao> ligacoesPorCliente(String nome) {
 
@@ -123,6 +125,21 @@ public class BDSimulado {
 		}
 		return resultado;
 	}
+	// --------------------------------------------------------------
+
+	// Questão 2c: retorne o número de ligações realizadas por todos os Clientes
+	// de uma determinada UF
+	public int ligacoesPorUF(String UF) {
+
+		int resultado = 0;
+		for (int i = 0; i < this.ligacoes.size(); i++) {
+			if (this.ligacoes.get(i).getCliente().getUF().equals(UF)) {
+				resultado++;
+			}
+		}
+		return resultado;
+	}
+	// --------------------------------------------------------------
 
 	// Questão 2d: todas as Ligações onde a UF de origem seja diferente da UF de
 	// destino
@@ -136,6 +153,95 @@ public class BDSimulado {
 		}
 		return resultado;
 	}
-	// Questão 3a:
+	// --------------------------------------------------------------
 
+	// Questão 3a:emitir a conta de um determinado Cliente, mostrando seus dados
+	// pessoais e a lista de suas ligações, onde, para cada ligação, seja
+	// mostrada a data e a hora em que a Ligação foi iniciada, o número de
+	// destino e a cidade/UF de destino.
+	public ArrayList<Ligacao> contaCliente(String nome) {
+
+		ArrayList<Ligacao> resultado = new ArrayList<Ligacao>();
+		for (int i = 0; i < this.ligacoes.size(); i++) {
+			if (this.ligacoes.get(i).getCliente().getNome().equals(nome)) {
+				resultado.add(this.ligacoes.get(i));
+			}
+		}
+		return resultado;
+	}
+	// --------------------------------------------------------------
+
+	// Questão 3b: cada minuto de uma ligação custa R$0,05 para o Cliente,
+	// altere (e/ou incremente) o código da Questão 3a informando também o valor
+	// de cada uma das ligações realizadas.
+	public double ValorLigacaoCliente(int codigoLigacao) {
+
+		double resultado = 0.0;
+		for (int i = 0; i < this.ligacoes.size(); i++) {
+			if (this.ligacoes.get(i).getCodigo() == codigoLigacao) {
+				resultado = 0.05 * ((this.ligacoes.get(i).getDataHoraFim().getHour()
+						- this.ligacoes.get(i).getDataHoraInicio().getHour())
+						+ (this.ligacoes.get(i).getDataHoraFim().getMinute()
+								- this.ligacoes.get(i).getDataHoraInicio().getMinute()));
+
+			}
+		}
+		return resultado;
+	}
+	// --------------------------------------------------------------
+
+	// Questão 3c: Ligações iniciadas depois das 20:00h. Para essas ligações o
+	// Cliente vai pagar apenas R$0,02 por minuto
+	public double ValorLigacaoDesconto(int codigoLigacao) {
+
+		double resultado = 0.0;
+		for (int i = 0; i < this.ligacoes.size(); i++) {
+			if (this.ligacoes.get(i).getCodigo() == codigoLigacao) {
+				// Testa se hora é maior que 20
+				if (this.ligacoes.get(i).getDataHoraInicio().getHour() >= 20) {
+					resultado = 0.02 * ((this.ligacoes.get(i).getDataHoraFim().getHour()
+							- this.ligacoes.get(i).getDataHoraInicio().getHour())
+							+ (this.ligacoes.get(i).getDataHoraFim().getMinute()
+									- this.ligacoes.get(i).getDataHoraInicio().getMinute()));
+				} else {
+					resultado = 0.05 * ((this.ligacoes.get(i).getDataHoraFim().getHour()
+							- this.ligacoes.get(i).getDataHoraInicio().getHour())
+							+ (this.ligacoes.get(i).getDataHoraFim().getMinute()
+									- this.ligacoes.get(i).getDataHoraInicio().getMinute()));
+				}
+			}
+		}
+		return resultado;
+	}
+	// --------------------------------------------------------------
+
+	// Questão 3d: Caso o Cliente tenha mais de 65 anos de idade ele deve
+	// receber um desconto extra de 15%
+	public double ValorDescontoIdoso(int codigoLigacao) {
+
+		double resultado = 0.0;
+		for (int i = 0; i < this.ligacoes.size(); i++) {
+			if (this.ligacoes.get(i).getCodigo() == codigoLigacao) {
+				// Testa se hora é maior que 20
+				if (this.ligacoes.get(i).getCodigo() == codigoLigacao) {
+					// Testa se hora é maior que 20
+					if (this.ligacoes.get(i).getDataHoraInicio().getHour() >= 20) {
+						resultado = 0.02 * ((this.ligacoes.get(i).getDataHoraFim().getHour()
+								- this.ligacoes.get(i).getDataHoraInicio().getHour())
+								+ (this.ligacoes.get(i).getDataHoraFim().getMinute()
+										- this.ligacoes.get(i).getDataHoraInicio().getMinute()));
+					} else {
+						resultado = 0.05 * ((this.ligacoes.get(i).getDataHoraFim().getHour()
+								- this.ligacoes.get(i).getDataHoraInicio().getHour())
+								+ (this.ligacoes.get(i).getDataHoraFim().getMinute()
+										- this.ligacoes.get(i).getDataHoraInicio().getMinute()));
+					}
+				}
+			}
+			if (this.ligacoes.get(i).getCliente().getDataDeNascimento().getYear() <= 1952) {
+				resultado = resultado * 0.015;
+			}
+		}
+		return resultado;
+	}
 }

@@ -11,7 +11,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [nome=" + nome + ", CPF=" + CPF + ", dataDeNascimento=" + dataDeNascimento + ", telefone="
+		return "Cliente [nome=" + nome + ", CPF=" + CPF + ", dataDeNascimento=" + getDataComoString() + ", telefone="
 				+ telefone + ", cidade=" + cidade + ", UF=" + UF + "]";
 	}
 
@@ -73,5 +73,11 @@ public class Cliente {
 
 	public void setUF(String uF) {
 		UF = uF;
+	}
+
+	// meotodo para Imprimir Data e Hora Como String
+	public String getDataComoString() {
+		return dataDeNascimento.getDayOfMonth() + "/" + dataDeNascimento.getMonthValue() + "/"
+				+ dataDeNascimento.getYear();
 	}
 }

@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 public class Ligacao {
 
@@ -14,8 +15,8 @@ public class Ligacao {
 	@Override
 	public String toString() {
 		return "Ligacao [codigo=" + codigo + ", TelefoneDestino=" + TelefoneDestino + ", DataHoraInicio="
-				+ DataHoraInicio + ", DataHoraFim=" + DataHoraFim + ", cidadeDestino=" + cidadeDestino + ", UFDestino="
-				+ UFDestino + ", cliente=" + cliente + "]";
+				+ getDataHoraInicioString() + ", DataHoraFim=" + getDataHoraFimString() + ", cidadeDestino="
+				+ cidadeDestino + ", UFDestino=" + UFDestino + ", cliente=" + cliente + "]";
 	}
 
 	// Metodo Construtor
@@ -86,6 +87,23 @@ public class Ligacao {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	// metodo para Imprimir Data e Hora Como String
+	public String getDataHoraInicioString() {
+		return DataHoraInicio.getDayOfMonth() + "/" + DataHoraInicio.getMonthValue() + "/" + DataHoraInicio.getYear()
+				+ " " + DataHoraInicio.getHour() + ":" + DataHoraInicio.getMinute() + "hr";
+	}
+
+	public String getDataHoraFimString() {
+		return DataHoraFim.getDayOfMonth() + "/" + DataHoraFim.getMonthValue() + "/" + DataHoraFim.getYear() + " "
+				+ DataHoraFim.getHour() + ":" + DataHoraFim.getMinute() + "hr";
+	}
+
+	public long diferençaHoras(LocalDateTime dataHoraInicio, LocalDateTime dataHoraFim) {
+		long tempo = dataHoraInicio.until(dataHoraFim, ChronoUnit.HOURS);
+		return tempo;
+
 	}
 
 }
